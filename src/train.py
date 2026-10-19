@@ -18,7 +18,7 @@ from sklearn.model_selection import (GridSearchCV, StratifiedKFold,
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-matplotlib.use("Agg")  
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 DATA_PATH = Path("data/raw/heart.csv")
@@ -134,7 +134,7 @@ def main():
                     mlflow.log_params(params)
                     mlflow.log_metric("cv_roc_auc", search.cv_results_["mean_test_score"][i])
 
-            # 2. Cross-validated metrics 
+            # 2. Cross-validated metrics
             cv_res = cross_validate(best, X_train, y_train, cv=cv, scoring=METRICS)
             cv_mean = {m: cv_res[f"test_{m}"].mean() for m in METRICS}
             cv_std = {m: cv_res[f"test_{m}"].std() for m in METRICS}
@@ -160,11 +160,8 @@ def main():
         print("best params:", search.best_params_)
         for m in METRICS:
             print(f"  {m:9s}  CV {cv_mean[m]:.3f} ± {cv_std[m]:.3f}   test {test[m]:.3f}")
-
-    
     winner = max(results, key=lambda n: results[n]["cv_mean"]["roc_auc"])
     print(f"\nSelected model: {winner}")
-
     MODEL_DIR.mkdir(exist_ok=True)
     joblib.dump(results[winner]["pipeline"], MODEL_DIR / "model.joblib")
     summary = {n: {k: v for k, v in r.items() if k != "pipeline"} for n, r in results.items()}
