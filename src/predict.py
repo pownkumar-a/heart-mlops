@@ -1,9 +1,3 @@
-"""Load the saved model and predict heart-disease risk for new patients.
-
-Usage:
-    python src/predict.py                  # predicts for the built-in sample patient
-    python src/predict.py patients.json    # a JSON list of patient records
-"""
 import json
 import sys
 from pathlib import Path
@@ -25,7 +19,6 @@ def load_model(path=MODEL_PATH):
 
 
 def predict(records, model=None):
-    """records: list of dicts with the 13 clinical features."""
     model = model or load_model()
     df = pd.DataFrame(records).astype(float)
     proba = model.predict_proba(df)[:, 1]
