@@ -1,11 +1,3 @@
-"""FastAPI service that serves the heart-disease model.
-
-Endpoints:
-  GET  /         - basic info
-  GET  /health   - is the API up and the model loaded?
-  POST /predict  - predict heart-disease risk for one patient
-  GET  /metrics  - Prometheus metrics (used for monitoring in Task 8)
-"""
 import logging
 import time
 from typing import Optional
@@ -29,7 +21,6 @@ PREDICTIONS = Counter("predictions_total", "Predictions made, by label", ["label
 
 
 class Patient(BaseModel):
-    """The 13 clinical features of one patient."""
     model_config = ConfigDict(json_schema_extra={"example": SAMPLE_PATIENT})
 
     age: float
