@@ -1,4 +1,4 @@
-"""Exploratory data analysis: prints a summary and saves charts to reports/figures/."""
+"""Exploratory data analysis"""
 from pathlib import Path
 
 import matplotlib.pyplot as plt
