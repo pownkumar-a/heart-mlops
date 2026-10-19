@@ -1,4 +1,3 @@
-"""Send random patient requests to the API so the monitoring dashboard shows traffic."""
 import json
 import random
 import sys
@@ -44,7 +43,7 @@ def main():
     for i in range(N):
         try:
             if i % 25 == 0:
-                post("/predict", {"age": "abc"})  # invalid on purpose -> 422
+                post("/predict", {"age": "abc"})
             result = post("/predict", random_patient())
             counts[result["label"]] = counts.get(result["label"], 0) + 1
         except urllib.error.HTTPError:
