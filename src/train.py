@@ -1,9 +1,3 @@
-"""Train and compare two models (Logistic Regression, Random Forest).
-
-Steps: load data -> build preprocessing pipeline -> tune each model with
-5-fold cross-validation -> evaluate on a held-out test set -> save the best model.
-Every run is tracked with MLflow (params, metrics, plots, model).
-"""
 import json
 from pathlib import Path
 
@@ -24,7 +18,7 @@ from sklearn.model_selection import (GridSearchCV, StratifiedKFold,
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-matplotlib.use("Agg")  # save plots to files, no pop-up windows
+matplotlib.use("Agg")  
 import matplotlib.pyplot as plt  # noqa: E402
 
 DATA_PATH = Path("data/raw/heart.csv")
@@ -92,7 +86,6 @@ def test_scores(model, X_test, y_test):
 
 
 def save_plots(name, model, X_test, y_test):
-    """Confusion matrix + ROC curve on the test set; returns the file paths."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     paths = []
     fig, ax = plt.subplots(figsize=(4.5, 4))
@@ -141,7 +134,7 @@ def main():
                     mlflow.log_params(params)
                     mlflow.log_metric("cv_roc_auc", search.cv_results_["mean_test_score"][i])
 
-            # 2. Cross-validated metrics for the best settings
+            # 2. Cross-validated metrics 
             cv_res = cross_validate(best, X_train, y_train, cv=cv, scoring=METRICS)
             cv_mean = {m: cv_res[f"test_{m}"].mean() for m in METRICS}
             cv_std = {m: cv_res[f"test_{m}"].std() for m in METRICS}
@@ -168,7 +161,7 @@ def main():
         for m in METRICS:
             print(f"  {m:9s}  CV {cv_mean[m]:.3f} ± {cv_std[m]:.3f}   test {test[m]:.3f}")
 
-    # Pick the winner by mean CV ROC-AUC (never by the test set)
+    
     winner = max(results, key=lambda n: results[n]["cv_mean"]["roc_auc"])
     print(f"\nSelected model: {winner}")
 
