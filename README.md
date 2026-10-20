@@ -4,6 +4,9 @@
 **Student:** PownKumar A
 **Student ID:** 2025AE05941
 
+ **Demo video:** [Watch the pipeline demo (Google Drive)](https://drive.google.com/drive/folders/1LG2Mi2sufPHRMZ40bPn73uhJcZ_HcPEJ)
+ **Report:** [Final report (PDF)](reports/2025AE05941_MLOps_Assignment1_Report.pdf)
+
 A machine-learning classifier that predicts the presence of heart disease from 13 clinical
 features (UCI Heart Disease dataset, Cleveland, 303 patients). The model is served as a REST API
 with experiment tracking, automated tests, CI/CD, Docker, Kubernetes and monitoring.
