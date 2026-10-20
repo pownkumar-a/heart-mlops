@@ -4,7 +4,7 @@
 **Student:** PownKumar A
 **Student ID:** 2025AE05941
 
- **Report:** [Final report (PDF)](reports/2025AE05941_MLOps_Assignment1_Report.pdf)
+ **Report:** [Final report (PDF)](https://github.com/pownkumar-a/heart-mlops/blob/main/reports/figures/2025AE05941_MLOps_Assignment1_Report.pdf)
  **Demo video:** [Watch the pipeline demo (Google Drive)](https://drive.google.com/drive/folders/1LG2Mi2sufPHRMZ40bPn73uhJcZ_HcPEJ)
 
 A machine-learning classifier that predicts the presence of heart disease from 13 clinical
